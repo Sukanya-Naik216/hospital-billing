@@ -7,10 +7,12 @@ const app = express();
 app.use(cors({
   origin: [
     'https://hospital-billing-y5e6.vercel.app',
+    'https://hospital-billing-y5e6-git-main-sukanya-naik216s-projects.vercel.app',
     'http://localhost:3000'
   ],
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 }));
 
 app.use(express.json());
