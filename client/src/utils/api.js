@@ -1,12 +1,10 @@
 import axios from 'axios';
 
-const API = axios.create({ 
-  baseURL: 'https://hospital-billing-api.onrender.com/api'
-});
+const API = axios.create({ baseURL: 'https://hospital-billing-api.onrender.com/api' });
 
 API.interceptors.request.use(config => {
   const token = localStorage.getItem('token');
-  if (token) config.headers.Authorization = Bearer \;
+  if (token) config.headers.Authorization = 'Bearer ' + token;
   return config;
 });
 
@@ -18,9 +16,9 @@ export const authAPI = {
 
 export const patientsAPI = {
   getAll: (search) => API.get('/patients', { params: { search } }),
-  getById: (id) => API.get(/patients/\),
+  getById: (id) => API.get('/patients/' + id),
   create: (data) => API.post('/patients', data),
-  update: (id, data) => API.put(/patients/\, data),
+  update: (id, data) => API.put('/patients/' + id, data),
 };
 
 export const servicesAPI = {
@@ -30,15 +28,15 @@ export const servicesAPI = {
 
 export const billsAPI = {
   getAll: (params) => API.get('/bills', { params }),
-  getById: (id) => API.get(/bills/\),
+  getById: (id) => API.get('/bills/' + id),
   create: (data) => API.post('/bills', data),
-  updateStatus: (id, status) => API.patch(/bills//status, { status }),
-  cancel: (id) => API.delete(/bills/\),
+  updateStatus: (id, status) => API.patch('/bills/' + id + '/status', { status }),
+  cancel: (id) => API.delete('/bills/' + id),
 };
 
 export const paymentsAPI = {
   create: (data) => API.post('/payments', data),
-  getByBill: (bill_id) => API.get(/payments/bill/\),
+  getByBill: (bill_id) => API.get('/payments/bill/' + bill_id),
 };
 
 export const dashboardAPI = {

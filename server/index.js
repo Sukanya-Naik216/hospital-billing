@@ -5,7 +5,10 @@ require('dotenv').config();
 const app = express();
 
 app.use(cors({
-  origin: '*',
+  origin: [
+    'https://hospital-billing-y5e6.vercel.app',
+    'http://localhost:3000'
+  ],
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
